@@ -1,0 +1,26 @@
+{
+  "name": "@prowlersh/cli",
+  "version": "0.1.0",
+  "description": "Prowler - A modern Node cross-platform shell",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prowlersh/prowlersh.git"
+  },
+  "keywords": [
+    "cli",
+    "node"
+  ],
+  "author": "Joseph Harrison-Lim",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/prowlersh/prowlersh/issues"
+  },
+  "homepage": "https://github.com/prowlersh/prowlersh#readme",
+  "devDependencies": {
+    "lerna": "^3.15.0"
+  }
+}

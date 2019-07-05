@@ -1,0 +1,28 @@
+{
+  "name": "@prowlersh/core",
+  "version": "0.1.0",
+  "description": "Javascript shell",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && node dist",
+    "test": "jest"
+  },
+  "keywords": [
+    "javascript",
+    "shell"
+  ],
+  "author": "Joseph Harrison-Lim",
+  "license": "GPL-3.0",
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.0.12",
+    "jest": "^24.8.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "commander": "^2.20.0",
+    "dotenv": "^8.0.0"
+  }
+}
