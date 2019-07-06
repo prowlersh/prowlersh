@@ -4,16 +4,13 @@
   "description": "list files",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist",
     "test": "jest"
   },
   "keywords": [
     "ls"
   ],
   "author": "Joseph Harrison-Lim",
-  "license": "GPL-3.0",
-  "devDependencies": {
-    "@types/node": "^12.0.12",
-    "jest": "^24.8.0",
-    "typescript": "^3.5.2"
-  }
+  "license": "MIT"
 }
