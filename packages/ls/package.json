@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [
     "ls"
