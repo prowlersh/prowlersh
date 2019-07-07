@@ -13,7 +13,7 @@ export const cmdr = new Command()
     .action((pid) => {
         cmdr.pid = pid;
     })
-    .option('-s --signal', 'The kill signal you wish to send to the process');
+    .option('-s --signal <signal>', 'The kill signal you wish to send to the process');
 
 
 export function kill(args: string) {
@@ -28,8 +28,7 @@ export function kill(args: string) {
 }
 
 const cmd: REPLCommand = {
-    action: kill,
-    help
+    action: kill
 };
 
 export default cmd;
