@@ -25,7 +25,7 @@ describe('kill', () => {
             expect(c.signal).toEqual(signal);
         });
 
-        it('outputs help text', () => {
+        it('helpInformation() outputs help text', () => {
             const c = argsParser();
 
             const helpText = c.helpInformation();

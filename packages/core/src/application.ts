@@ -2,7 +2,7 @@ import readline from 'readline';
 import repl from 'repl';
 import path from 'path';
 import { ReadStream } from 'tty';
-import { Readable, Writable } from 'stream';
+import { Readable, Writable, Transform } from 'stream';
 import { readdir, stat } from 'fs';
 import { promisify } from 'util';
 
@@ -10,16 +10,19 @@ export class Application {
     private _repl: repl.REPLServer;
     private _rl: readline.ReadLine;
     constructor(
-        inputStream: Readable,
-        outputStream: Writable
     ) {
-        this._repl = repl.start({
-            input: inputStream,
-            output: outputStream
+        // const replStream = new Readable();
+        const replStream = new Transform({});
+        replStream.on('error', replStream.destroy);
+        process.stdin.on('data', data => {
+            // Todo: Check for ctrl keys
+            replStream.write(data);
         });
-        // process.stdin.setRawMode!(true);
-        this._rl = readline.createInterface(inputStream, outputStream);
-
+        this._repl = repl.start({
+            input: replStream,
+            output: process.stdout
+        });
+        this._rl = readline.createInterface(process.stdin, process.stdout);
     }
 
     async loadBuiltins() {
