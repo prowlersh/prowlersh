@@ -1,21 +1,20 @@
 import readline from 'readline';
 import repl from 'repl';
 import path from 'path';
-import { ReadStream } from 'tty';
-import { Readable, Writable, Transform } from 'stream';
+import { Transform } from 'stream';
 import { readdir, stat } from 'fs';
 import { promisify } from 'util';
 
 export class Application {
-    private _repl: repl.REPLServer;
-    private _rl: readline.ReadLine;
-    constructor(
-    ) {
+    private readonly _repl: repl.REPLServer;
+    private readonly _rl: readline.ReadLine;
+    constructor() {
         // const replStream = new Readable();
         const replStream = new Transform({});
         replStream.on('error', replStream.destroy);
         process.stdin.on('data', data => {
             // Todo: Check for ctrl keys
+            
             replStream.write(data);
         });
         this._repl = repl.start({
@@ -28,8 +27,8 @@ export class Application {
     async loadBuiltins() {
         const rd = promisify(readdir);
         const s = promisify(stat);
-        const directoryComtents = await rd(path.join(__dirname, 'builtins'));
-        for (const filePath of directoryComtents) {
+        const directoryContents = await rd(path.join(__dirname, 'builtins'));
+        for (const filePath of directoryContents) {
             const fileStat = await s(filePath);
             const { name } = path.parse(filePath);
 

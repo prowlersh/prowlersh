@@ -1,5 +1,4 @@
 import { kill, argsParser } from '../kill';
-import { Command } from 'commander';
 
 describe('kill', () => {
     describe('cmdr', () => {
@@ -10,7 +9,7 @@ describe('kill', () => {
             let c = argsParser()
                 .parse(['C:\\Program Files\\nodejs\\node.exe', 'foo.js', pid, '-s', signal]);
 
-                expect(c.pid).toBeDefined();
+            expect(c.pid).toBeDefined();
             expect(c.pid).toEqual(pid);
             expect(c.signal).toEqual(signal);
         });
@@ -19,7 +18,7 @@ describe('kill', () => {
             const signal = '3';
 
             let c = argsParser()
-                .parse(['C:\\Program Files\\nodejs\\node.exe', 'foo.js', '-s', signal]);
+                .parse(['/usr/bin/node', 'foo.js', '-s', signal]);
 
             expect(c.pid).toBeUndefined();
             expect(c.signal).toEqual(signal);
