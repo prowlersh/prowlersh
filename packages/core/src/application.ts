@@ -7,7 +7,6 @@ import { promisify } from 'util';
 
 export class Application {
     private readonly _repl: repl.REPLServer;
-    // private readonly _rl: readline.ReadLine;
     constructor() {
         // Use a separate stream for the repl since we want to filter out ctrl keys before writing
         const replStream = new Readable();
@@ -23,7 +22,6 @@ export class Application {
             prompt: 'prowler: '
         });
         replStream.resume();
-        // this._rl = readline.createInterface(process.stdin, process.stdout);
     }
 
     start() {
