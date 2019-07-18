@@ -6,12 +6,15 @@ import fs from 'fs';
 import { promisify } from 'util';
 
 export class Application {
-    private _repl?: repl.REPLServer;
+    private _repl: repl.REPLServer;
     private readonly _replStream: Readable;
     constructor() {
         // Use a separate stream for the repl since we want to filter out ctrl keys before writing
-        // TODO: Implement _read()
-        this._replStream = new Readable();
+        this._replStream = new Readable({
+            read(size) {
+                this.push(process.stdin.read(size));
+            }
+        });
         this._repl = repl.start({
             input: this._replStream,
             output: process.stdout,
@@ -43,12 +46,12 @@ export class Application {
             if (fileStat.isDirectory())
                 continue;
 
-            if(fileName.match(/\.md|\.spec|\.test/) !== null || !fileName.match(/\.js/))
+            if (fileName.match(/\.md|\.spec|\.test|\.map/) !== null || !fileName.match(/\.js/))
                 continue;
 
-            console.log('Importing ' + fileName);
+            console.log(`Importing ${fileName} from ${filePath}`);
             const mod = await import(filePath);
-            this._repl!.defineCommand(fileName.replace('.js', ''), mod);
+            this._repl.defineCommand(fileName.replace('.js', ''), mod.default);
         }
     }
 }

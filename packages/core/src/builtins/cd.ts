@@ -6,7 +6,7 @@ export function cd(directoryPath: string) {
 }
 
 const cdCommand: REPLCommand = {
-    action: (text: string) => {
+    action(text: string) {
         const args = parse(text);
 
         cd(args._[0]);
