@@ -1,7 +1,6 @@
-import readline from 'readline';
-import repl, { REPLServer } from 'repl';
+import repl from 'repl';
 import path from 'path';
-import { Transform, Readable } from 'stream';
+import { Readable, Transform } from 'stream';
 import fs from 'fs';
 import { promisify } from 'util';
 
@@ -10,11 +9,7 @@ export class Application {
     private readonly _replStream: Readable;
     constructor() {
         // Use a separate stream for the repl since we want to filter out ctrl keys before writing
-        this._replStream = new Readable({
-            read(size) {
-                this.push(process.stdin.read(size));
-            }
-        });
+        this._replStream = new Transform({});
         this._repl = repl.start({
             input: this._replStream,
             output: process.stdout,
@@ -24,14 +19,16 @@ export class Application {
 
     start() {
         this._replStream.on('error', this._replStream.destroy);
-        process.stdin.on('data', data => {
-            // Todo: Check for ctrl keys
-            // Todo!: Data isn't currently being emitted back to stdout
-            this._replStream.push(data);  // forward data to replStream
+        this._repl.on('exit', () => process.exit(0));
+        process.stdin.on('data', chunk => {
+            this._replStream.push(chunk);
         });
+
         this._replStream.resume();
         process.stdin.resume();
     }
+
+
 
     async loadBuiltins() {
         const readDir = promisify(fs.readdir);
