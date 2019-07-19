@@ -23,9 +23,11 @@
   },
   "homepage": "https://github.com/prowlersh/prowlersh#readme",
   "devDependencies": {
+    "@types/dotenv": "^6.1.1",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.0.12",
     "@types/yargs-parser": "^13.0.0",
+    "dotenv": "^8.0.0",
     "jest": "^24.8.0",
     "lerna": "^3.15.0",
     "ts-jest": "^24.0.2",
