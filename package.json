@@ -24,12 +24,12 @@
   "homepage": "https://github.com/prowlersh/prowlersh#readme",
   "devDependencies": {
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.0.12",
+    "@types/node": "^12.6.8",
     "@types/yargs-parser": "^13.0.0",
     "jest": "^24.8.0",
-    "lerna": "^3.15.0",
+    "lerna": "^3.16.0",
     "ts-jest": "^24.0.2",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.3"
   },
   "dependencies": {
     "yargs-parser": "^13.1.1"

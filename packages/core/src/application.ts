@@ -9,7 +9,7 @@ export class Application {
     private readonly _replStream: Readable;
     constructor() {
         // Use a separate stream for the repl since we want to filter out ctrl keys before writing
-        this._replStream = new Transform({});
+        this._replStream = new Transform();
         this._repl = repl.start({
             input: this._replStream,
             output: process.stdout,
@@ -18,6 +18,10 @@ export class Application {
     }
 
     start() {
+        this._replStream.on('data', chunk => {
+            // TODO: PreProcess data in here
+
+        });
         this._replStream.on('error', this._replStream.destroy);
         this._repl.on('exit', () => process.exit(0));
         process.stdin.on('data', chunk => {
@@ -46,7 +50,7 @@ export class Application {
             if (fileName.match(/\.md|\.spec|\.test|\.map/) !== null || !fileName.match(/\.js/))
                 continue;
 
-            console.log(`Importing ${fileName} from ${filePath}`);
+            console.debug(`Importing ${fileName} from ${filePath}`);
             const mod = await import(filePath);
             this._repl.defineCommand(fileName.replace('.js', ''), mod.default);
         }
