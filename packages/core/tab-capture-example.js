@@ -19,9 +19,7 @@ process.stdin.on('keypress', (str, key) => {
         const files = fs.readdirSync(process.cwd());
         let output = '';
         const width = files.reduce((prev, cur) => prev > cur.length ? prev : cur.length, 0);
-        console.log('width: ' + width);
         for (let i = 0; i < files.length; i++) {
-            console.log('padding: ' + (width - files[i].length).toString());
             const padding = ' '.repeat(width - files[i].length);
             output += `${files[i]}${padding}\t`;
             if (i > 0 && i % 4 === 0) output += '\n';
