@@ -20,9 +20,9 @@ process.stdin.on('keypress', (str, key) => {
         let output = '';
         const width = files.reduce((prev, cur) => prev > cur.length ? prev : cur.length, 0);
         for (let i = 0; i < files.length; i++) {
+            if (i > 0 && i % 4 === 0) output += '\n';
             const padding = ' '.repeat(width - files[i].length);
             output += `${files[i]}${padding}\t`;
-            if (i > 0 && i % 4 === 0) output += '\n';
         }
         console.log(output);
     }
