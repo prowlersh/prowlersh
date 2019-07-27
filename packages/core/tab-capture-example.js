@@ -8,7 +8,11 @@ process.stdin.setRawMode(true);
 
 let tabBuffer = false;
 
-const isTab = key => key.name === 'tab' && !key.shift && !key.ctrl;
+const isTab = key => key &&
+    key.name &&
+    key.name === 'tab' &&
+    !key.shift &&
+    !key.ctrl;
 
 process.stdin.on('keypress', (str, key) => {
 
