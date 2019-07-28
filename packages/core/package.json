@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Javascript shell",
   "main": "dist/index.js",
+  "bin": "bin/prowler",
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist",
@@ -21,5 +22,10 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "dotenv": "^8.0.0"
-  }
+  },
+  "files": [
+    "dist",
+    "bin",
+    "src"
+  ]
 }
